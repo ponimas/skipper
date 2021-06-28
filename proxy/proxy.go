@@ -380,7 +380,7 @@ func (e *proxyError) NetError() net.Error {
 
 func copyHeader(to, from http.Header) {
 	for k, v := range from {
-		to[http.CanonicalHeaderKey(k)] = v
+		to[http.CanonicalHeaderKey(k)] = append(to[http.CanonicalHeaderKey(k)], v...)
 	}
 }
 
