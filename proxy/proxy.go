@@ -1579,14 +1579,6 @@ func (p *Proxy) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			}
 
 			additionalData, _ := ctx.stateBag[al.AccessLogAdditionalDataKey].(map[string]interface{})
-			if len(accessLogEnabled.MaskedQueryParams) > 0 {
-				if additionalData == nil {
-					additionalData = make(map[string]interface{})
-				}
-
-				additionalData[logging.KeyMaskedQueryParams] = accessLogEnabled.MaskedQueryParams
-			}
-
 			logging.LogAccess(entry, additionalData)
 		}
 
